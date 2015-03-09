@@ -1,0 +1,11 @@
+Package: ldblock
+Title: data structures for linkage disequilibrium measures in populations
+Version: 0.0.0
+Author: VJ Carey <stvjc@channing.harvard.edu>
+Description: data structures for linkage disequilibrium measures in populations
+Suggests: 
+Depends: Matrix
+Maintainer: VJ Carey <stvjc@channing.harvard.edu>
+License: Artistic-2.0
+LazyLoad: yes
+BiocViews: genetics, SNP

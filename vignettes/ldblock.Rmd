@@ -1,0 +1,57 @@
+
+---
+title: "ldblock package: linkage disequilibrium data structures"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "February 2015"
+output:
+  BiocStyle::pdf_document:
+    toc: yes
+    number_sections: yes
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{xyz}
+-->
+
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+```
+
+# Introduction
+
+There is a nice vignette in `r Biocpkg("snpStats")` concerning
+linkage disequilibrium (LD) analysis as supported by software
+in that package.
+The purpose of this package is to simplify handling of
+existing population-level data on LD for the purpose
+of flexibly defining LD blocks.
+
+# Import of HapMap LD data
+
+The `hmld` function imports gzipped tabular data
+from hapmap's repository
+\url{hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/}.
+
+```{r lkd, cache=TRUE}
+suppressPackageStartupMessages(library(ldblock))
+path = dir(system.file("hapmap", package="ldblock"), full=TRUE)
+ceu17 = hmld(path, poptag="CEU", chrom="ceu17")
+ceu17
+```
+
+# A view of the block structure
+
+For some reason knitr/render will not display this image nicely.
+```{r abc, fig=TRUE, fig.width=7, fig.height=7}
+image(ceu17@ldmat[1:400,1:400], 
+   col.reg=heat.colors(120), colorkey=TRUE, useRaster=TRUE)
+```
+
+This ignores physical distance and MAF.  The bright stripes are
+probably due to SNP with low MAF.
