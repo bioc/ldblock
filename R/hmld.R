@@ -22,10 +22,10 @@ hmld = function(hmgztxt, poptag, chrom, genome="hg19", stat="Dprime") {
     }
  stopifnot(is.character(hmgztxt))
  stopifnot(length(grep("txt.gz$", hmgztxt))==1)
- require(GenomicRanges)
- require(Matrix)
+# requireNamespace("GenomicRanges")
+ requireNamespace("Matrix")
  message(paste0("importing ", hmgztxt))
- lddf = read.delim(gzfile(hmgztxt), sep=" ", h=FALSE, stringsAsFactors=FALSE)
+ lddf = read.delim(gzfile(hmgztxt), sep=" ", header=FALSE, stringsAsFactors=FALSE)
  message("done.")
  names(lddf) = c("pos1", "pos2", "pop", "rs1", "rs2", "Dprime",
    "R2", "LOD", "fbin")
@@ -59,7 +59,7 @@ downloadPopByChr = function(chrname="chr1", popname="CEU",
 }
 
 expandSnpSet = function(rsl, lb=.8, ldstruct, chrn="chr17", popn="CEU",
-   txtgzfn = dir(system.file("hapmap", package="ldblock"), full=TRUE)) {
+   txtgzfn = dir(system.file("hapmap", package="ldblock"), full.names=TRUE)) {
  if (missing(ldstruct)) curhm = hmld(txtgzfn, poptag=popn, chrom=chrn)@ldmat
  else curhm = ldstruct@ldmat
  bad = setdiff(rsl, rownames(curhm))

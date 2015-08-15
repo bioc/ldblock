@@ -1,5 +1,8 @@
 import(Matrix)
+import(methods)
 import(snpStats)
+
+exportClass("ldstruct")
 
 export("downloadPopByChr", 
        "expandSnpSet",     

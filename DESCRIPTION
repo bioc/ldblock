@@ -2,10 +2,10 @@ Package: ldblock
 Title: data structures for linkage disequilibrium measures in populations
 Version: 0.0.2
 Author: VJ Carey <stvjc@channing.harvard.edu>
-Description: data structures for linkage disequilibrium measures in populations
-Suggests: RUnit
+Description: Define data structures for linkage disequilibrium measures in populations.
+Suggests: RUnit, BiocGenerics
 Imports: Matrix, snpStats
-Depends: R (>= 3.1)
+Depends: R (>= 3.1), methods
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
 License: Artistic-2.0
 LazyLoad: yes
