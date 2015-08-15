@@ -16,7 +16,7 @@ output:
 
 <!--
 %\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{xyz}
+%\VignetteIndexEntry{LD block import and manipulation}
 -->
 
 ```{r style, echo = FALSE, results = 'asis'}
@@ -49,6 +49,7 @@ ceu17
 
 For some reason knitr/render will not display this image nicely.
 ```{r abc, fig=TRUE, fig.width=7, fig.height=7}
+library(Matrix)
 image(ceu17@ldmat[1:400,1:400], 
    col.reg=heat.colors(120), colorkey=TRUE, useRaster=TRUE)
 ```
