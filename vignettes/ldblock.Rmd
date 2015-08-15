@@ -41,7 +41,7 @@ from hapmap's repository
 ```{r lkd, cache=TRUE}
 suppressPackageStartupMessages(library(ldblock))
 path = dir(system.file("hapmap", package="ldblock"), full=TRUE)
-ceu17 = hmld(path, poptag="CEU", chrom="ceu17")
+ceu17 = hmld(path, poptag="CEU", chrom="chr17")
 ceu17
 ```
 
@@ -55,3 +55,36 @@ image(ceu17@ldmat[1:400,1:400],
 
 This ignores physical distance and MAF.  The bright stripes are
 probably due to SNP with low MAF.
+
+# Collecting SNPs exhibiting linkage to selected SNP
+
+We'll use `ceu17` and the `gwascat` package to enumerate
+SNP that are in LD with GWAS hits.
+
+```{r getg}
+library(gwascat)
+data(ebicat37)
+e17 = ebicat37[ which(seqnames(ebicat37) == "17") ]
+```
+
+Some dbSNP names for GWAS hits on chr17 are
+```{r getrs}
+rsh17 = unique(e17$SNPS)
+head(rsh17)
+```
+
+We will use `expandSnpSet` to obtain names for SNP
+that were found in HapMap CEU to have which $D' > .9$
+with any of these hits.  These names are added to
+the input set.
+
+```{r doexpa}
+length(rsh17)
+exset = expandSnpSet( rsh17, ldstruct= ceu17, lb=.9 )
+length(exset)
+all(rsh17 %in% exset)
+```
+
+Not all GWAS SNP are in the
+HapMap LD resource.  You can use your own LD data
+as long as the format agrees with that of the HapMap distribution.

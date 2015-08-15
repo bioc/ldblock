@@ -1,1 +1,7 @@
-exportPattern("..*")
+import(Matrix)
+import(snpStats)
+
+export("downloadPopByChr", 
+       "expandSnpSet",     
+       "hmld",
+       "ldmat")
