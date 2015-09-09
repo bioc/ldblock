@@ -10,7 +10,8 @@ Given a set of SNP identifiers, use LD to expand the set to
 include linked loci
 }
 \usage{
-expandSnpSet(rsl, lb = 0.8, ldstruct, chrn = "chr17", popn = "CEU", txtgzfn = dir(system.file("hapmap", package = "ldblock"), full = TRUE))
+expandSnpSet(rsl, lb = 0.8, ldstruct, chrn = "chr17", popn = "CEU", 
+   txtgzfn = dir(system.file("hapmap", package = "ldblock"), full.names = TRUE))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
