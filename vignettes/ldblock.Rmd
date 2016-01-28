@@ -65,6 +65,7 @@ SNP that are in LD with GWAS hits.
 ```{r getg}
 library(gwascat)
 data(ebicat37)
+seqlevelsStyle(ebicat37) = "NCBI"
 e17 = ebicat37[ which(seqnames(ebicat37) == "17") ]
 ```
 
