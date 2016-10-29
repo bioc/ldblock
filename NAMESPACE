@@ -1,10 +1,17 @@
 import(Matrix)
 import(methods)
 import(snpStats)
+import(GO.db)
+
+importFrom(erma, genemodel)
+importFrom(Rsamtools, TabixFile)
+importFrom(VariantAnnotation, readVcf, genotypeToSnpMatrix,
+   ScanVcfParam)
+importFrom(GenomeInfoDb, "seqlevelsStyle<-")
 
 exportClass("ldstruct")
 
 export("downloadPopByChr", 
        "expandSnpSet",     
        "hmld",
-       "ldmat")
+       "ldmat", "ldByGene")

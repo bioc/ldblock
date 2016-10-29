@@ -66,7 +66,7 @@ SNP that are in LD with GWAS hits.
 library(gwascat)
 data(ebicat37)
 seqlevelsStyle(ebicat37) = "NCBI"
-e17 = ebicat37[ which(seqnames(ebicat37) == "17") ]
+e17 = ebicat37[ which(as.character(seqnames(ebicat37)) == "17") ]
 ```
 
 Some dbSNP names for GWAS hits on chr17 are
