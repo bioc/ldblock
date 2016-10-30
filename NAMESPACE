@@ -14,4 +14,4 @@ exportClass("ldstruct")
 export("downloadPopByChr", 
        "expandSnpSet",     
        "hmld",
-       "ldmat", "ldByGene")
+       "ldmat", "ldByGene", "s3_1kg")
