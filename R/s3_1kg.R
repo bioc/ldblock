@@ -15,3 +15,11 @@ s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
 
   wrap(gsub("%%NUM%%", chrnum, tmpl))
 }
+
+stack1kg = function()
+{
+tmp = sapply(1:22,function(x) path(s3_1kg(x)))
+names(tmp) = as.character(1:22)
+VcfStack(tmp)
+}
+

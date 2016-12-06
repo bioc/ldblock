@@ -1,5 +1,6 @@
 \name{s3_1kg}
 \alias{s3_1kg}
+\alias{stack1kg}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Create a URL referencing 1000 genomes content in AWS S3
@@ -9,7 +10,9 @@ Create a URL referencing 1000 genomes content in AWS S3.
 }
 \usage{
 s3_1kg(chrnum, tag = "20130502", wrap = function(x) TabixFile(x), tmpl = NULL, dropchr = TRUE)
+stack1kg()
 }
+
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{chrnum}{
@@ -31,9 +34,11 @@ of interest
 if TRUE \code{chrnum} will have 'chr' removed if present
 }
 }
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
+\details{
+stack1kg produces a VcfStack instance with references to VCF
+for 1000 genomes autosomal chrs.  S3-resident
+VCF files with version "v5a.20130502" are used.
+}
 \value{
 by default, a \code{\link[Rsamtools]{TabixFile}} instance
 %%  ~Describe the value returned

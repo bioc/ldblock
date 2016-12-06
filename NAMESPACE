@@ -4,14 +4,16 @@ import(snpStats)
 import(GO.db)
 
 importFrom(erma, genemodel)
-importFrom(Rsamtools, TabixFile)
+importFrom(Rsamtools, TabixFile, path)
 importFrom(VariantAnnotation, readVcf, genotypeToSnpMatrix,
    ScanVcfParam)
 importFrom(GenomeInfoDb, "seqlevelsStyle<-")
+importFrom(GenomicFiles, VcfStack)
+importClassFrom(GenomicFiles, VcfStack)
 
 exportClass("ldstruct")
 
 export("downloadPopByChr", 
        "expandSnpSet",     
        "hmld",
-       "ldmat", "ldByGene", "s3_1kg")
+       "ldmat", "ldByGene", "s3_1kg", "stack1kg")
