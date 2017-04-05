@@ -1,6 +1,5 @@
 s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
  tmpl=NULL, dropchr=TRUE) {
- require(Rsamtools)
 
   if (dropchr) chrnum = gsub("chr", "", chrnum)
   tmpl2010 = "http://1000genomes.s3.amazonaws.com/release/20110521/ALL.chr%%NUM%%.phase1_release_v3.20101123.snps_indels_svs.genotypes.vcf.gz"
@@ -16,10 +15,12 @@ s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
   wrap(gsub("%%NUM%%", chrnum, tmpl))
 }
 
-stack1kg = function()
+stack1kg = function(chrs=as.character(1:22))
 {
-tmp = sapply(1:22,function(x) path(s3_1kg(x)))
-names(tmp) = as.character(1:22)
-VcfStack(tmp)
+tmp = sapply(chrs,function(x) path(s3_1kg(x)))
+names(tmp) = as.character(chrs)
+tmp = VcfStack(tmp)
+seqinfo(tmp) = seqinfo(tmp)[chrs]
+tmp
 }
 

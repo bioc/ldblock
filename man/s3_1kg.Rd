@@ -10,13 +10,16 @@ Create a URL referencing 1000 genomes content in AWS S3.
 }
 \usage{
 s3_1kg(chrnum, tag = "20130502", wrap = function(x) TabixFile(x), tmpl = NULL, dropchr = TRUE)
-stack1kg()
+stack1kg(chrs=as.character(1:22))
 }
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{chrnum}{
 a character string denoting a chromosome, such as '22'
+}
+  \item{chrs}{
+a vector of chromosome names for extraction from 1000 genomes VCF collection
 }
   \item{tag}{
 a character string identifying the version, ignored if \code{tmpl}
