@@ -15,12 +15,13 @@ s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
   wrap(gsub("%%NUM%%", chrnum, tmpl))
 }
 
-stack1kg = function(chrs=as.character(1:22))
+stack1kg = function(chrs=as.character(1:22), index=FALSE)
 {
-tmp = sapply(chrs,function(x) path(s3_1kg(x)))
+fs = tmp = sapply(chrs,function(x) path(s3_1kg(x)))
 names(tmp) = as.character(chrs)
-tmp = VcfStack(tmp)
-seqinfo(tmp) = seqinfo(tmp)[chrs]
+tmp = VcfStack(tmp, seqinfo=Seqinfo(), index=index)
+t1 = TabixFile(fs[1])
+seqinfo(tmp) = seqinfo(scanVcfHeader(t1))
 tmp
 }
 
