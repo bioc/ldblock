@@ -4,9 +4,9 @@ import(snpStats)
 import(GO.db)
 
 importFrom(erma, genemodel)
-importFrom(Rsamtools, TabixFile, path)
+importFrom(Rsamtools, TabixFile, path, index, "index<-")
 importFrom(VariantAnnotation, readVcf, genotypeToSnpMatrix,
-   ScanVcfParam)
+   ScanVcfParam, scanVcfHeader, VcfFileList)
 importFrom(GenomeInfoDb, "seqlevelsStyle<-")
 importFrom(GenomicFiles, VcfStack)
 importClassFrom(GenomicFiles, VcfStack)

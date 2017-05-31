@@ -19,7 +19,10 @@ stack1kg = function(chrs=as.character(1:22), index=FALSE)
 {
 fs = tmp = sapply(chrs,function(x) path(s3_1kg(x)))
 names(tmp) = as.character(chrs)
-tmp = VcfStack(tmp, seqinfo=Seqinfo(), index=index)
+tmp = VcfStack(tmp, seqinfo=Seqinfo(chrs), index=index)
+fis = tmp@files
+updf = lapply(fis, function(x) {index(x) = paste0(path(x), ".tbi"); x})
+tmp@files = VcfFileList(updf)
 t1 = TabixFile(fs[1])
 seqinfo(tmp) = seqinfo(scanVcfHeader(t1))
 tmp
