@@ -10,7 +10,7 @@ Create a URL referencing 1000 genomes content in AWS S3.
 }
 \usage{
 s3_1kg(chrnum, tag = "20130502", wrap = function(x) TabixFile(x), tmpl = NULL, dropchr = TRUE)
-stack1kg(chrs=as.character(1:22))
+stack1kg(chrs=as.character(1:22), index = FALSE)
 }
 
 %- maybe also 'usage' for other objects documented here.
