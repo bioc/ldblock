@@ -4,11 +4,14 @@ import(snpStats)
 import(GO.db)
 
 importFrom(erma, genemodel)
-importFrom(Rsamtools, TabixFile, path, index, "index<-")
+importFrom(BiocGenerics, path)
+importFrom(Rsamtools, TabixFile, index, "index<-")
 importFrom(VariantAnnotation, readVcf, genotypeToSnpMatrix,
    ScanVcfParam, scanVcfHeader, VcfFileList)
 importFrom(GenomeInfoDb, "seqlevelsStyle<-")
 importFrom(GenomicFiles, VcfStack)
+importFrom("utils", "download.file", "read.delim")
+
 importClassFrom(GenomicFiles, VcfStack)
 
 exportClass("ldstruct")

@@ -36,6 +36,10 @@ of interest
   \item{dropchr}{
 if TRUE \code{chrnum} will have 'chr' removed if present
 }
+  \item{index}{
+a logical indicating if the vcf index files should be created
+(for \code{stack1kg})
+}
 }
 \details{
 stack1kg produces a VcfStack instance with references to VCF
