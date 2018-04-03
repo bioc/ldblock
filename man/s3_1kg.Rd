@@ -10,7 +10,7 @@ Create a URL referencing 1000 genomes content in AWS S3.
 }
 \usage{
 s3_1kg(chrnum, tag = "20130502", wrap = function(x) TabixFile(x), tmpl = NULL, dropchr = TRUE)
-stack1kg(chrs=as.character(1:22))
+stack1kg(chrs=as.character(1:22), index=FALSE)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -20,6 +20,11 @@ a character string denoting a chromosome, such as '22'
 }
   \item{chrs}{
 a vector of chromosome names for extraction from 1000 genomes VCF collection
+}
+  \item{index}{
+logical telling whether VcfStack should attempt to create
+the local index; for 1000 genomes, the tbi are in the cloud
+and will be used by readVcf so FALSE is appropriate
 }
   \item{tag}{
 a character string identifying the version, ignored if \code{tmpl}
