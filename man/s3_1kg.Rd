@@ -47,7 +47,7 @@ for 1000 genomes autosomal chrs.  S3-resident
 VCF files with version "v5a.20130502" are used.
 }
 \value{
-by default, a \code{\link[Rsamtools]{TabixFile}} instance
+by default, a \code{\link{TabixFile}} instance
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

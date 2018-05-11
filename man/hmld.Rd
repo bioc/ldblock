@@ -16,7 +16,7 @@ hmld(hmgztxt, poptag, chrom, genome = "hg19", stat = "Dprime")
 name of gzipped text file as distributed
 at 
 \url{hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/}.
-It will be processed by \code{\link[utils]{read.delim}}.
+It will be processed by \code{\link{read.delim}}.
 }
   \item{poptag}{
 heuristic tag identifying population

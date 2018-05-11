@@ -24,7 +24,7 @@ combined in a vector
 lower bound on statistic used to retrieve loci in LD
 }
   \item{ldstruct}{
-instance of \code{\link[ldblock]{ldstruct-class}}
+instance of \code{\link{ldstruct-class}}
 }
   \item{chrn}{
 chromosome identifier

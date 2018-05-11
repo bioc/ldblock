@@ -18,7 +18,7 @@ ldByGene(sym = "MMP24",
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{sym}{
-A standard gene symbol for use with \code{\link[erma]{genemodel}}
+A standard gene symbol for use with \code{\link{genemodel}}
 }
   \item{vcf}{
 Path to a tabix-indexed VCF file
