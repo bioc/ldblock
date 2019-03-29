@@ -1,3 +1,27 @@
+#' Create a URL referencing 1000 genomes content in AWS S3.
+#' 
+#' stack1kg produces a VcfStack instance with references to VCF for 1000
+#' genomes autosomal chrs.  S3-resident VCF files with version "v5a.20130502"
+#' are used.
+#' 
+#' @param chrnum a character string denoting a chromosome, such as '22'
+#' @param tag a character string identifying the version, ignored if
+#' \code{tmpl} is non-null; valid \code{tag} values are the default or
+#' "20101123"
+#' @param wrap The URL is returned after evaluating \code{wrap} on it; default
+#' is useful when Tabix indexing is to be used
+#' @param tmpl alternate template for full URL, useful if versions prior to
+#' 2010 are of interest
+#' @param dropchr if TRUE \code{chrnum} will have 'chr' removed if present
+#' @return by default, a \code{\link[Rsamtools]{TabixFile}} instance %%
+#' @keywords models
+#' @examples
+#' s3_1kg("22")
+#' \dontrun{
+#'  require(VariantAnnotation)
+#'  scanVcfHeader(s3_1kg("22"))
+#'  }
+#' @export
 s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
  tmpl=NULL, dropchr=TRUE) {
 
@@ -15,9 +39,22 @@ s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
   wrap(gsub("%%NUM%%", chrnum, tmpl))
 }
 
-stack1kg = function(chrs=as.character(1:22), index=FALSE)
+# March 2019 -- observed some issues getting data from AWS S3
+# EBI images seem newer so will use them
+
+#' couple together a group of VCFs
+#' @param chrs a vector of chromosome names for extraction from 1000 genomes
+#' VCF collection
+#' @param index logical telling whether VcfStack should attempt to create the
+#' local index; for 1000 genomes, the tbi are in the cloud and will be used by
+#' readVcf so FALSE is appropriate
+#' @param useEBI  logical(1) defaults to TRUE ... use tabix-indexed vcf from EBI
+#' @export
+stack1kg = function(chrs=as.character(1:22), index=FALSE, useEBI=TRUE)
 {
-fs = tmp = sapply(chrs,function(x) path(s3_1kg(x)))
+func = s3_1kg
+if (useEBI) func = ebi_1kg
+fs = tmp = sapply(chrs,function(x) path(func(x)))
 names(tmp) = as.character(chrs)
 tmp = VcfStack(tmp, seqinfo=Seqinfo(chrs), index=index)
 fis = tmp@files
@@ -26,5 +63,12 @@ tmp@files = VcfFileList(updf)
 t1 = TabixFile(fs[1])
 seqinfo(tmp) = seqinfo(scanVcfHeader(t1))
 tmp
+}
+
+ebi_1kg = function(chrnum, wrap = function(x) TabixFile(x),
+ tmpl=NULL, dropchr=TRUE) {
+  if (dropchr) chrnum = gsub("chr", "", chrnum)
+template =  "http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr%s.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz"
+  wrap(sprintf(template, chrnum))
 }
 
