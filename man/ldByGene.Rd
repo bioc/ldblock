@@ -62,8 +62,10 @@ as returned by \code{\link[snpStats]{ld}}
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-ld1 = ldByGene(depth=150)
-image(ld1[1:200,1:200], col.reg=heat.colors(120), colorkey=TRUE,
- main="SNPs in MMP24 (chr20)") 
+if (.Platform$OS.type == "unix") {
+ ld1 = ldByGene(depth=150)
+ image(ld1[1:200,1:200], col.reg=heat.colors(120), colorkey=TRUE,
+   main="SNPs in MMP24 (chr20)") 
+ }
 }
 \keyword{ models }
