@@ -1,8 +1,8 @@
-#' obtain LD statistics in region specified by a gene model
-#' 
 #' Obtain LD statistics in region specified by a gene model.
-#' 
-#' 
+#' @importFrom Rsamtools TabixFile
+#' @importFrom VariantAnnotation ScanVcfParam readVcf genotypeToSnpMatrix
+#' @importFrom erma genemodel
+#' @importFrom snpStats ld
 #' @param sym A standard gene symbol for use with \code{\link[erma]{genemodel}}
 #' @param vcf Path to a tabix-indexed VCF file
 #' @param flank number of basepairs to flank gene model for search

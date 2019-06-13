@@ -66,7 +66,7 @@ hmld = function(hmgztxt, poptag, chrom, genome="hg19", stat="Dprime") {
  nur = length(urs)
  frs1 = factor(lddf$rs1, levels=urs)
  frs2 = factor(lddf$rs2, levels=urs)
- mm = sparseMatrix(i=as.integer(frs1), j=as.integer(frs2), x=lddf[[stat]], 
+ mm = Matrix::sparseMatrix(i=as.integer(frs1), j=as.integer(frs2), x=lddf[[stat]], 
     dims=c(nur,nur), dimnames=list(as.character(urs), as.character(urs)),
     symmetric=TRUE)
  diag(mm) = 1.0
