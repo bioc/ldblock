@@ -43,12 +43,25 @@ s3_1kg = function(chrnum, tag="20130502", wrap = function(x) TabixFile(x),
 # EBI images seem newer so will use them
 
 #' couple together a group of VCFs
+#' @import GenomicFiles
+#' @importFrom BiocGenerics path
+#' @importFrom GenomeInfoDb Seqinfo
+#' @importFrom Rsamtools "index<-"
+#' @importFrom VariantAnnotation VcfFileList
 #' @param chrs a vector of chromosome names for extraction from 1000 genomes
 #' VCF collection
 #' @param index logical telling whether VcfStack should attempt to create the
 #' local index; for 1000 genomes, the tbi are in the cloud and will be used by
 #' readVcf so FALSE is appropriate
 #' @param useEBI  logical(1) defaults to TRUE ... use tabix-indexed vcf from EBI
+#' @return VcfStack instance
+#' @note The seqinfo component of returned stack will have NA for genome.
+#' Please set it manually; for useEBI=TRUE this would be GRCh38.
+#' @examples
+#' if (interactive()) {
+#'   st1 = stack1kg()
+#'   st1
+#'   }
 #' @export
 stack1kg = function(chrs=as.character(1:22), index=FALSE, useEBI=TRUE)
 {
@@ -60,8 +73,6 @@ tmp = VcfStack(tmp, seqinfo=Seqinfo(chrs), index=index)
 fis = tmp@files
 updf = lapply(fis, function(x) {index(x) = paste0(path(x), ".tbi"); x})
 tmp@files = VcfFileList(updf)
-t1 = TabixFile(fs[1])
-seqinfo(tmp) = seqinfo(scanVcfHeader(t1))
 tmp
 }
 

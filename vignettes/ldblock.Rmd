@@ -1,23 +1,18 @@
-
 ---
 title: "ldblock package: linkage disequilibrium data structures"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "February 2015"
+vignette: >
+  %\VignetteIndexEntry{ldblock package: linkage disequilibrium data structures}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 output:
-  BiocStyle::pdf_document:
-    toc: yes
-    number_sections: yes
   BiocStyle::html_document:
     highlight: pygments
     number_sections: yes
     theme: united
     toc: yes
 ---
-
-<!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{LD block import and manipulation}
--->
 
 ```{r style, echo = FALSE, results = 'asis'}
 BiocStyle::markdown()
@@ -82,7 +77,7 @@ the input set.
 
 ```{r doexpa}
 length(rsh17)
-exset = expandSnpSet( rsh17, ldstruct= ceu17, lb=.9 )
+exset = ldblock::expandSnpSet( rsh17, ldstruct= ceu17, lb=.9 )
 length(exset)
 all(rsh17 %in% exset)
 ```

@@ -12,17 +12,19 @@ setMethod("show", "ldstruct", function(object) {
   show(getSlots(class(object)))
 })
 setGeneric("ldmat", function(x)standardGeneric("ldmat"))
+
+#' accessor for matrix component
+#' @aliases ldmat,ldstruct-method
+#' @param x instance of ldstruct
+#' @export
 setMethod("ldmat", "ldstruct", function(x) x@ldmat)
 
 
 
-#' import hapmap LD data and create a structure for its management
-#' 
-#' import hapmap LD data and create a structure for its management
-#' 
+#' import hapmap LD data and create a structure for its management;
 #' generates a sparse matrix representation of pairwise LD statistics and binds
 #' metadata on variant name and position
-#' 
+#' @import methods
 #' @param hmgztxt name of gzipped text file as distributed at
 #' \url{hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/}. It
 #' will be processed by \code{\link[utils]{read.delim}}.
@@ -66,7 +68,7 @@ hmld = function(hmgztxt, poptag, chrom, genome="hg19", stat="Dprime") {
  nur = length(urs)
  frs1 = factor(lddf$rs1, levels=urs)
  frs2 = factor(lddf$rs2, levels=urs)
- mm = sparseMatrix(i=as.integer(frs1), j=as.integer(frs2), x=lddf[[stat]], 
+ mm = Matrix::sparseMatrix(i=as.integer(frs1), j=as.integer(frs2), x=lddf[[stat]], 
     dims=c(nur,nur), dimnames=list(as.character(urs), as.character(urs)),
     symmetric=TRUE)
  diag(mm) = 1.0
