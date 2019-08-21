@@ -3,8 +3,6 @@
 \docType{class}
 \name{ldstruct-class}
 \alias{ldstruct-class}
-\alias{ldmat,ldstruct-method}
-\alias{ldmat}
 \title{Class \code{"ldstruct"}}
 \description{
 Manage information about LD statistics as reported by HapMap.

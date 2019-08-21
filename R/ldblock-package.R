@@ -40,7 +40,6 @@ NULL
 #' 
 #' 
 #' @name ldstruct-class
-#' @aliases ldstruct-class ldmat,ldstruct-method ldmat
 #' @docType class
 #' @section Objects from the Class: Objects can be created by calls of the form
 #' \code{new("ldstruct", ...)}.

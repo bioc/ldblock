@@ -16,6 +16,19 @@ readVcf so FALSE is appropriate}
 
 \item{useEBI}{logical(1) defaults to TRUE ... use tabix-indexed vcf from EBI}
 }
+\value{
+VcfStack instance
+}
 \description{
 couple together a group of VCFs
+}
+\note{
+The seqinfo component of returned stack will have NA for genome.
+Please set it manually; for useEBI=TRUE this would be GRCh38.
+}
+\examples{
+if (interactive()) {
+  st1 = stack1kg()
+  st1
+  }
 }

@@ -32,11 +32,13 @@ by \code{\link[snpStats]{ld}}
 \description{
 Obtain LD statistics in region specified by a gene model.
 }
+\note{
+Uses an internal function genemod4ldblock, that relies
+on EnsDb.Hsapiens.v75 to get gene model.
+}
 \examples{
-
 ld1 = ldByGene(depth=150)
 image(ld1[1:200,1:200], col.reg=heat.colors(120), colorkey=TRUE,
  main="SNPs in MMP24 (chr20)") 
-
 }
 \keyword{models}

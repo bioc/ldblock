@@ -2,7 +2,9 @@
 % Please edit documentation in R/hmld.R
 \name{hmld}
 \alias{hmld}
-\title{import hapmap LD data and create a structure for its management}
+\title{import hapmap LD data and create a structure for its management;
+generates a sparse matrix representation of pairwise LD statistics and binds
+metadata on variant name and position}
 \usage{
 hmld(hmgztxt, poptag, chrom, genome = "hg19", stat = "Dprime")
 }
@@ -23,9 +25,7 @@ will be processed by \code{\link[utils]{read.delim}}.}
 instance of ldstruct class
 }
 \description{
-import hapmap LD data and create a structure for its management
-}
-\details{
+import hapmap LD data and create a structure for its management;
 generates a sparse matrix representation of pairwise LD statistics and binds
 metadata on variant name and position
 }
