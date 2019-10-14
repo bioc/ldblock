@@ -23,7 +23,7 @@ is useful when Tabix indexing is to be used}
 \item{dropchr}{if TRUE \code{chrnum} will have 'chr' removed if present}
 }
 \value{
-by default, a \code{\link[Rsamtools]{TabixFile}} instance %%
+by default, a \code{\link{TabixFile}} instance %%
 }
 \description{
 stack1kg produces a VcfStack instance with references to VCF for 1000

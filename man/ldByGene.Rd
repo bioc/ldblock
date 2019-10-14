@@ -9,7 +9,7 @@ ldByGene(sym = "MMP24", vcf = system.file("vcf/c20exch.vcf.gz", package
   stats = "D.prime", depth = 10)
 }
 \arguments{
-\item{sym}{A standard gene symbol for use with \code{\link[erma]{genemodel}}}
+\item{sym}{A standard gene symbol}
 
 \item{vcf}{Path to a tabix-indexed VCF file}
 
@@ -19,7 +19,7 @@ ldByGene(sym = "MMP24", vcf = system.file("vcf/c20exch.vcf.gz", package
 model}
 
 \item{genomeSLS}{character tag for genome, to be used with
-\code{\link[VariantAnnotation]{readVcf}}}
+\code{\link{readVcf}}}
 
 \item{stats}{passed to \code{\link[snpStats]{ld}}}
 
@@ -34,7 +34,8 @@ Obtain LD statistics in region specified by a gene model.
 }
 \note{
 Uses an internal function genemod4ldblock, that relies
-on EnsDb.Hsapiens.v75 to get gene model.
+on EnsDb.Hsapiens.v75 to get gene model.  Default VCF
+comes from gQTLstats
 }
 \examples{
 ld1 = ldByGene(depth=150)

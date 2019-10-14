@@ -27,7 +27,7 @@ setMethod("ldmat", "ldstruct", function(x) x@ldmat)
 #' @import methods
 #' @param hmgztxt name of gzipped text file as distributed at
 #' \url{hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/}. It
-#' will be processed by \code{\link[utils]{read.delim}}.
+#' will be processed by \code{\link{read.delim}}.
 #' @param poptag heuristic tag identifying population
 #' @param chrom heuristic tag for chromosome name
 #' @param genome genome tag

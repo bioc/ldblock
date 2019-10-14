@@ -13,7 +13,7 @@
 #' @param tmpl alternate template for full URL, useful if versions prior to
 #' 2010 are of interest
 #' @param dropchr if TRUE \code{chrnum} will have 'chr' removed if present
-#' @return by default, a \code{\link[Rsamtools]{TabixFile}} instance %%
+#' @return by default, a \code{\link{TabixFile}} instance %%
 #' @keywords models
 #' @examples
 #' s3_1kg("22")

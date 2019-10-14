@@ -5,19 +5,20 @@
 #' @importFrom ensembldb transcripts
 #' @import EnsDb.Hsapiens.v75
 #' @importFrom GenomeInfoDb seqlevelsStyle<-
-#' @param sym A standard gene symbol for use with \code{\link[erma]{genemodel}}
+#' @param sym A standard gene symbol 
 #' @param vcf Path to a tabix-indexed VCF file
 #' @param flank number of basepairs to flank gene model for search
 #' @param vcfSLS seqlevelsStyle (SLS) token for VCF; will be imposed on gene
 #' model
 #' @param genomeSLS character tag for genome, to be used with
-#' \code{\link[VariantAnnotation]{readVcf}}
+#' \code{\link{readVcf}}
 #' @param stats passed to \code{\link[snpStats]{ld}}
 #' @param depth passed to \code{\link[snpStats]{ld}}
 #' @return sparse matrix representation of selected LD statistic, as returned
 #' by \code{\link[snpStats]{ld}}
 #' @note Uses an internal function genemod4ldblock, that relies
-#' on EnsDb.Hsapiens.v75 to get gene model.
+#' on EnsDb.Hsapiens.v75 to get gene model.  Default VCF
+#' comes from gQTLstats
 #' @keywords models
 #' @examples
 #' ld1 = ldByGene(depth=150)
@@ -28,6 +29,10 @@ ldByGene = function(sym="MMP24",
    vcf=system.file("vcf/c20exch.vcf.gz", package="gQTLstats"),
    flank=1000, vcfSLS = "NCBI", genomeSLS="hg19",
    stats = "D.prime", depth=10) {  # assumes Homo.sapiens
+if (!file.exists(vcf)) {
+ message("can't find file passed as vcf argument; returning NULL")
+ return(NULL)
+ }
 tf = TabixFile(vcf)
 mod = range(genemodel4ldblock(sym))
 seqlevelsStyle(mod) = vcfSLS # to match vcf
