@@ -34,7 +34,10 @@ from hapmap's repository
 \url{hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/}.
 
 ```{r lkd, cache=TRUE}
-suppressPackageStartupMessages(library(ldblock))
+suppressPackageStartupMessages({
+ library(ldblock)
+ library(GenomeInfoDb)
+})
 path = dir(system.file("hapmap", package="ldblock"), full=TRUE)
 ceu17 = hmld(path, poptag="CEU", chrom="chr17")
 ceu17
