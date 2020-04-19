@@ -4,8 +4,7 @@
 \alias{ldmat}
 \title{use LDmat API from NCI LDlink service}
 \usage{
-ldmat(rsvec, pop = "CEU", type = "d",
-  token = Sys.getenv("LDLINK_TOKEN"))
+ldmat(rsvec, pop = "CEU", type = "d", token = Sys.getenv("LDLINK_TOKEN"))
 }
 \arguments{
 \item{rsvec}{character vector of SNP ids}

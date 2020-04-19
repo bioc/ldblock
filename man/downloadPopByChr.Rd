@@ -4,9 +4,13 @@
 \alias{downloadPopByChr}
 \title{download hapmap resource with LD estimates}
 \usage{
-downloadPopByChr(chrname = "chr1", popname = "CEU",
-  urlTemplate = "http://hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/ld_\%\%CHRN\%\%_\%\%POPN\%\%.txt.gz",
-  targfolder = Sys.getenv("LDBLOCK_TXTGZ_DIR"))
+downloadPopByChr(
+  chrname = "chr1",
+  popname = "CEU",
+ 
+    urlTemplate = "http://hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/ld_\%\%CHRN\%\%_\%\%POPN\%\%.txt.gz",
+  targfolder = Sys.getenv("LDBLOCK_TXTGZ_DIR")
+)
 }
 \arguments{
 \item{chrname}{UCSC format tag for chromosome}

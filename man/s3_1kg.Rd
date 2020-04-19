@@ -4,8 +4,13 @@
 \alias{s3_1kg}
 \title{Create a URL referencing 1000 genomes content in AWS S3.}
 \usage{
-s3_1kg(chrnum, tag = "20130502", wrap = function(x) TabixFile(x),
-  tmpl = NULL, dropchr = TRUE)
+s3_1kg(
+  chrnum,
+  tag = "20130502",
+  wrap = function(x) TabixFile(x),
+  tmpl = NULL,
+  dropchr = TRUE
+)
 }
 \arguments{
 \item{chrnum}{a character string denoting a chromosome, such as '22'}
@@ -23,7 +28,7 @@ is useful when Tabix indexing is to be used}
 \item{dropchr}{if TRUE \code{chrnum} will have 'chr' removed if present}
 }
 \value{
-by default, a \code{\link[Rsamtools]{TabixFile}} instance %%
+by default, a \code{\link{TabixFile}} instance %%
 }
 \description{
 stack1kg produces a VcfStack instance with references to VCF for 1000

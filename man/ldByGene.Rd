@@ -4,9 +4,15 @@
 \alias{ldByGene}
 \title{Obtain LD statistics in region specified by a gene model.}
 \usage{
-ldByGene(sym = "MMP24", vcf = system.file("vcf/c20exch.vcf.gz", package
-  = "gQTLstats"), flank = 1000, vcfSLS = "NCBI", genomeSLS = "hg19",
-  stats = "D.prime", depth = 10)
+ldByGene(
+  sym = "MMP24",
+  vcf = system.file("vcf/c20exch.vcf.gz", package = "gQTLstats"),
+  flank = 1000,
+  vcfSLS = "NCBI",
+  genomeSLS = "hg19",
+  stats = "D.prime",
+  depth = 10
+)
 }
 \arguments{
 \item{sym}{A standard gene symbol for use with \code{\link[erma]{genemodel}}}
@@ -19,7 +25,7 @@ ldByGene(sym = "MMP24", vcf = system.file("vcf/c20exch.vcf.gz", package
 model}
 
 \item{genomeSLS}{character tag for genome, to be used with
-\code{\link[VariantAnnotation]{readVcf}}}
+\code{\link{readVcf}}}
 
 \item{stats}{passed to \code{\link[snpStats]{ld}}}
 

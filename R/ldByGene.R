@@ -11,7 +11,7 @@
 #' @param vcfSLS seqlevelsStyle (SLS) token for VCF; will be imposed on gene
 #' model
 #' @param genomeSLS character tag for genome, to be used with
-#' \code{\link[VariantAnnotation]{readVcf}}
+#' \code{\link{readVcf}}
 #' @param stats passed to \code{\link[snpStats]{ld}}
 #' @param depth passed to \code{\link[snpStats]{ld}}
 #' @return sparse matrix representation of selected LD statistic, as returned

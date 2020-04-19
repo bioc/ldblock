@@ -5,9 +5,14 @@
 \title{Given a set of SNP identifiers, use LD to expand the set to include linked
 loci}
 \usage{
-expandSnpSet(rsl, lb = 0.8, ldstruct, chrn = "chr17", popn = "CEU",
-  txtgzfn = dir(system.file("hapmap", package = "ldblock"), full.names =
-  TRUE))
+expandSnpSet(
+  rsl,
+  lb = 0.8,
+  ldstruct,
+  chrn = "chr17",
+  popn = "CEU",
+  txtgzfn = dir(system.file("hapmap", package = "ldblock"), full.names = TRUE)
+)
 }
 \arguments{
 \item{rsl}{input list -- SNPs not found in the LD structure are simply
