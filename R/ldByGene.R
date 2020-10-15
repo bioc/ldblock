@@ -20,12 +20,14 @@
 #' on EnsDb.Hsapiens.v75 to get gene model.
 #' @keywords models
 #' @examples
+#' if (interactive()) {  # there is a warning owing to non-SNV present
 #' ld1 = ldByGene(depth=150)
 #' image(ld1[1:200,1:200], col.reg=heat.colors(120), colorkey=TRUE,
 #'  main="SNPs in MMP24 (chr20)") 
+#' }
 #' @export ldByGene
 ldByGene = function(sym="MMP24", 
-   vcf=system.file("vcf/c20exch.vcf.gz", package="gQTLstats"),
+   vcf=system.file("vcf/c20exch.vcf.gz", package="ldblock"),
    flank=1000, vcfSLS = "NCBI", genomeSLS="hg19",
    stats = "D.prime", depth=10) {  # assumes Homo.sapiens
 tf = TabixFile(vcf)

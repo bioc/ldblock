@@ -6,7 +6,7 @@
 \usage{
 ldByGene(
   sym = "MMP24",
-  vcf = system.file("vcf/c20exch.vcf.gz", package = "gQTLstats"),
+  vcf = system.file("vcf/c20exch.vcf.gz", package = "ldblock"),
   flank = 1000,
   vcfSLS = "NCBI",
   genomeSLS = "hg19",
@@ -43,8 +43,10 @@ Uses an internal function genemod4ldblock, that relies
 on EnsDb.Hsapiens.v75 to get gene model.
 }
 \examples{
+if (interactive()) {  # there is a warning owing to non-SNV present
 ld1 = ldByGene(depth=150)
 image(ld1[1:200,1:200], col.reg=heat.colors(120), colorkey=TRUE,
  main="SNPs in MMP24 (chr20)") 
+}
 }
 \keyword{models}
