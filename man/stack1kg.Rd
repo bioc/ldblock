@@ -4,7 +4,7 @@
 \alias{stack1kg}
 \title{couple together a group of VCFs}
 \usage{
-stack1kg(chrs = as.character(1:22), index = FALSE, useEBI = TRUE)
+stack1kg(chrs = as.character(1:22), index = FALSE, useEBI = FALSE)
 }
 \arguments{
 \item{chrs}{a vector of chromosome names for extraction from 1000 genomes
@@ -14,7 +14,9 @@ VCF collection}
 local index; for 1000 genomes, the tbi are in the cloud and will be used by
 readVcf so FALSE is appropriate}
 
-\item{useEBI}{logical(1) defaults to TRUE ... use tabix-indexed vcf from EBI}
+\item{useEBI}{logical(1) defaults to FALSE ... if TRUE, use tabix-indexed vcf from EBI,
+but in July 2022 the EBI FTP site does not respond.  If FALSE, the AWS Open Data
+access path is used}
 }
 \value{
 VcfStack instance
@@ -24,7 +26,8 @@ couple together a group of VCFs
 }
 \note{
 The seqinfo component of returned stack will have NA for genome.
-Please set it manually; for useEBI=TRUE this would be GRCh38.
+Please set it manually; for useEBI=TRUE this would be GRCh38; very likely so
+for useEBI=FALSE, but this should be checked.
 }
 \examples{
 if (interactive()) {

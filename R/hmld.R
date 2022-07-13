@@ -1,6 +1,8 @@
 # using retrievals from
 # hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/
 
+#' container for LD data 
+#' @importClassesFrom Matrix dsCMatrix
 setClass("ldstruct", representation(ldmat = "dsCMatrix", chrom="character",
   genome="character", allpos="numeric", poptag="character", statInUse="character",
   allrs="character"))
@@ -24,7 +26,6 @@ setMethod("ldmat", "ldstruct", function(x) x@ldmat)
 #' import hapmap LD data and create a structure for its management;
 #' generates a sparse matrix representation of pairwise LD statistics and binds
 #' metadata on variant name and position
-#' @import methods
 #' @param hmgztxt name of gzipped text file as distributed at
 #' \url{hapmap.ncbi.nlm.nih.gov/downloads/ld_data/2009-02_phaseIII_r2/}. It
 #' will be processed by \code{\link{read.delim}}.

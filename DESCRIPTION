@@ -1,6 +1,6 @@
 Package: ldblock
 Title: data structures for linkage disequilibrium measures in populations
-Version: 1.27.0
+Version: 1.27.1
 Author: VJ Carey <stvjc@channing.harvard.edu>
 Description: Define data structures for linkage disequilibrium measures in populations.
 Suggests: 
@@ -8,16 +8,16 @@ Suggests:
     knitr,
     BiocStyle,
     gwascat,
-    rmarkdown
-Imports: Matrix, snpStats, VariantAnnotation, GenomeInfoDb, httr,
-	ensembldb, EnsDb.Hsapiens.v75,
-	Rsamtools, GenomicFiles (>= 1.13.6), BiocGenerics (>= 0.25.1)
-Depends: R (>= 3.5), methods
+    rmarkdown,
+    snpStats, VariantAnnotation, GenomeInfoDb,
+    ensembldb, EnsDb.Hsapiens.v75,
+    Rsamtools, GenomicFiles (>= 1.13.6)
+Imports: BiocGenerics (>= 0.25.1), httr, Matrix
+Depends: R (>= 3.5), methods, rlang
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
 License: Artistic-2.0
-LazyLoad: yes
-LazyData: yes
+LazyData: no
 BiocViews: genetics, SNP, GWAS, LinkageDisequilibrium
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Encoding: UTF-8

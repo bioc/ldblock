@@ -15,7 +15,7 @@ ldByGene(
 )
 }
 \arguments{
-\item{sym}{A standard gene symbol for use with \code{\link[erma]{genemodel}}}
+\item{sym}{A standard gene symbol for use with \code{genemodel}}
 
 \item{vcf}{Path to a tabix-indexed VCF file}
 
@@ -25,7 +25,7 @@ ldByGene(
 model}
 
 \item{genomeSLS}{character tag for genome, to be used with
-\code{\link{readVcf}}}
+\code{readVcf}}
 
 \item{stats}{passed to \code{\link[snpStats]{ld}}}
 

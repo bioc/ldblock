@@ -2,25 +2,15 @@
 % Please edit documentation in R/s3_1kg.R
 \name{s3_1kg}
 \alias{s3_1kg}
-\title{Create a URL referencing 1000 genomes content in AWS S3.}
+\title{Create a URL referencing 1000 genomes content in AWS S3.
+stack1kg produces a VcfStack instance with references to VCF for 1000
+genomes autosomal chrs.  S3-resident VCF files with version "v5a.20130502"
+are used.}
 \usage{
-s3_1kg(
-  chrnum,
-  tag = "20130502",
-  wrap = function(x) TabixFile(x),
-  tmpl = NULL,
-  dropchr = TRUE
-)
+s3_1kg(chrnum, tmpl, dropchr = TRUE)
 }
 \arguments{
 \item{chrnum}{a character string denoting a chromosome, such as '22'}
-
-\item{tag}{a character string identifying the version, ignored if
-\code{tmpl} is non-null; valid \code{tag} values are the default or
-"20101123"}
-
-\item{wrap}{The URL is returned after evaluating \code{wrap} on it; default
-is useful when Tabix indexing is to be used}
 
 \item{tmpl}{alternate template for full URL, useful if versions prior to
 2010 are of interest}
@@ -28,18 +18,20 @@ is useful when Tabix indexing is to be used}
 \item{dropchr}{if TRUE \code{chrnum} will have 'chr' removed if present}
 }
 \value{
-by default, a \code{\link{TabixFile}} instance %%
+by default, a TabixFile instance
 }
 \description{
+Create a URL referencing 1000 genomes content in AWS S3.
 stack1kg produces a VcfStack instance with references to VCF for 1000
 genomes autosomal chrs.  S3-resident VCF files with version "v5a.20130502"
 are used.
 }
+\note{
+The "wrap" parameter has been removed.  A TabixFile structure will be returned.  The
+tag parameter has been removed.  Supply a tmpl argument if you are not using 20130502 version.
+}
 \examples{
-s3_1kg("22")
-\dontrun{
- require(VariantAnnotation)
- scanVcfHeader(s3_1kg("22"))
- }
+requireNamespace("Rsamtools")
+s3_1kg("22") # try scanVcfHeader from VariantAnnotation
 }
 \keyword{models}

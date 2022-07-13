@@ -1,17 +1,11 @@
 #' Obtain LD statistics in region specified by a gene model.
-#' @importFrom Rsamtools TabixFile
-#' @importFrom VariantAnnotation ScanVcfParam readVcf genotypeToSnpMatrix
-#' @importFrom snpStats ld
-#' @importFrom ensembldb transcripts
-#' @import EnsDb.Hsapiens.v75
-#' @importFrom GenomeInfoDb seqlevelsStyle<-
-#' @param sym A standard gene symbol for use with \code{\link[erma]{genemodel}}
+#' @param sym A standard gene symbol for use with \code{genemodel}
 #' @param vcf Path to a tabix-indexed VCF file
 #' @param flank number of basepairs to flank gene model for search
 #' @param vcfSLS seqlevelsStyle (SLS) token for VCF; will be imposed on gene
 #' model
 #' @param genomeSLS character tag for genome, to be used with
-#' \code{\link{readVcf}}
+#' \code{readVcf}
 #' @param stats passed to \code{\link[snpStats]{ld}}
 #' @param depth passed to \code{\link[snpStats]{ld}}
 #' @return sparse matrix representation of selected LD statistic, as returned
@@ -30,18 +24,26 @@ ldByGene = function(sym="MMP24",
    vcf=system.file("vcf/c20exch.vcf.gz", package="ldblock"),
    flank=1000, vcfSLS = "NCBI", genomeSLS="hg19",
    stats = "D.prime", depth=10) {  # assumes Homo.sapiens
-tf = TabixFile(vcf)
+if (!requireNamespace("snpStats")) stop("install snpStats to use this function")
+if (!requireNamespace("GenomeInfoDb")) stop("install GenomeInfoDb to use this function")
+if (!requireNamespace("VariantAnnotation")) stop("install VariantAnnotation to use this function")
+if (!requireNamespace("Rsamtools")) stop("install Rsamtools to use this function")
+tf = Rsamtools::TabixFile(vcf)
 mod = range(genemodel4ldblock(sym))
-seqlevelsStyle(mod) = vcfSLS # to match vcf
-toget = ScanVcfParam(which=(mod+flank)) # a little boundary added
-r = readVcf(tf, param=toget, genome=genomeSLS)
-gt = genotypeToSnpMatrix(r)[[1]]
-ldout = ld(gt, stats=stats, depth=depth) # sparse matrix
+GenomeInfoDb::seqlevelsStyle(mod) = vcfSLS # to match vcf
+toget = VariantAnnotation::ScanVcfParam(which=(mod+flank)) # a little boundary added
+r = VariantAnnotation::readVcf(tf, param=toget, genome=genomeSLS)
+gt = VariantAnnotation::genotypeToSnpMatrix(r)[[1]]
+ldout = snpStats::ld(gt, stats=stats, depth=depth) # sparse matrix
 ldout
 }
 
 genemodel4ldblock = function(sym,
-   annoresource=EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75) {
+   annoresource) {
+ if (!requireNamespace("ensembldb")) stop("install ensembldb to use this function")
+ if (missing(annoresource) & requireNamespace("EnsDb.Hsapiens.v75")) 
+       annoresource = EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
+ else if (missing(annoresource)) stop("supply annoresource or install EnsDb.Hsapiens.v75 to use this function")
  gg = ensembldb::transcripts(annoresource, columns="gene_name")
  ind = grep(sym, gg$gene_name)
  if (length(ind)==0) stop("cannot resolve symbol in EnsDb.Hsapiens.v75")
