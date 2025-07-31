@@ -29,6 +29,7 @@ s3_1kg = function(chrnum, tmpl, dropchr=TRUE) {
 
 #' couple together a group of VCFs
 #' @importFrom BiocGenerics path
+#' @importFrom Seqinfo Seqinfo
 #' @param chrs a vector of chromosome names for extraction from 1000 genomes
 #' VCF collection
 #' @param index logical telling whether VcfStack should attempt to create the
@@ -57,7 +58,7 @@ if (!requireNamespace("GenomicFiles")) stop("please install GenomicFiles to use 
 if (useEBI) func = ebi_1kg
 fs = tmp = sapply(chrs,function(x) BiocGenerics::path(func(x)))
 names(tmp) = as.character(chrs)
-tmp = GenomicFiles::VcfStack(tmp, seqinfo=GenomeInfoDb::Seqinfo(chrs), index=index)
+tmp = GenomicFiles::VcfStack(tmp, seqinfo=Seqinfo::Seqinfo(chrs), index=index)
 fis = tmp@files
 updf = lapply(fis, function(x) {Rsamtools::index(x) = paste0(path(x), ".tbi"); x})
 tmp@files = VariantAnnotation::VcfFileList(updf)
